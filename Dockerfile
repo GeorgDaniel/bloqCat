@@ -7,8 +7,12 @@ WORKDIR /app
 # Copy the pyproject.toml and poetry.lock files to the container
 COPY pyproject.toml poetry.lock /app/
 
+ENV PATH="/root/.local/bin:${PATH}"
+
 # Install poetry and project dependencies
-RUN pip install poetry && \
+RUN python3 -m pip install --user pipx && \
+    python3 -m pipx ensurepath && \
+    pipx install poetry && \
     poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi
 
@@ -19,7 +23,7 @@ COPY . /app/
 EXPOSE 5000
 
 # Set environment variables for Flask
-ENV FLASK_APP=bloqcat/api/__init__.py
+ENV FLASK_APP=bloqcat
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Specify the command to run when the container starts
