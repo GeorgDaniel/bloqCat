@@ -149,7 +149,7 @@ class TopologyView(MethodView):
         return True, "Pfade und Qubit-Anzahlen sind gültig."
 
     def fetch_file_content(self, concrete_solution_id):
-        url = f"http://localhost:6626/atlas/patterns/patternId/concrete-solutions/{concrete_solution_id}/file/content"
+        url = f"http://qc-atlas-api:6626/atlas/patterns/patternId/concrete-solutions/{concrete_solution_id}/file/content"
         response = requests.get(url)
         if response.status_code == 200:
             return response.text
