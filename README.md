@@ -9,13 +9,14 @@ The template documentation can be found in `docs/templatedocumention.md`
 ---
 ## Development
 1. to install the dependencies run
-```bash
-poetry install
-```
-2. start the service with
-```bash
-poetry run flask run
-```
+
+    ```bash
+    poetry install
+    ```
+1. start the service with
+    ```bash
+    poetry run flask run
+    ```
 
 
 ## Disclaimer of Warranty
