@@ -614,3 +614,4 @@ werkzeug==2.3.6 ; python_full_version >= "3.8.1" and python_version < "4" \
 zipp==3.16.2 ; python_full_version >= "3.8.1" and python_version < "3.10" \
     --hash=sha256:679e51dd4403591b2d6838a48de3d283f3d188412a9782faadf845f298736ba0 \
     --hash=sha256:ebc15946aa78bd63458992fc81ec3b6f7b1e92d51c35e6de1c3804e73b799147
+sphinx_rtd_theme>=0.5.0 ; 
