@@ -593,7 +593,7 @@ sqlalchemy==2.0.19 ; python_full_version >= "3.8.1" and python_full_version < "4
     --hash=sha256:f469f15068cd8351826df4080ffe4cc6377c5bf7d29b5a07b0e717dddb4c7ea2 \
     --hash=sha256:f82c310ddf97b04e1392c33cf9a70909e0ae10a7e2ddc1d64495e3abdc5d19fb \
     --hash=sha256:fa51ce4aea583b0c6b426f4b0563d3535c1c75986c4373a0987d84d22376585b
-tomli==2.0.1 ; python_full_version >= "3.8.1" and python_full_version < "4.0.0" \
+tomli==1.2.3 ; python_full_version >= "3.8.1" and python_full_version < "4.0.0" \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
     --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f
 typing-extensions==4.7.1 ; python_full_version >= "3.8.1" and python_full_version < "4.0.0" \
