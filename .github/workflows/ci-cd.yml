@@ -27,4 +27,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ghcr.io/aldekal/bloqCat:latest
+        tags: ghcr.io/aldekal/bloqcat:latest
