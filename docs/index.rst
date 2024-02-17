@@ -14,6 +14,7 @@ Welcome to BloQCat documentation!
    cli
    changelog
    use-case
+   templatedocumentation
 
 `Api documentation <api.html>`_
 
