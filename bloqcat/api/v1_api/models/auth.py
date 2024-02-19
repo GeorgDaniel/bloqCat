@@ -9,6 +9,7 @@ __all__ = [
     "LoginTokensSchema",
     "AccessTokenSchema",
     "UserSchema",
+    "TopologyViewSchema",
 ]
 
 
@@ -34,3 +35,7 @@ class AccessTokenSchema(MaBaseSchema):
 
 class UserSchema(MaBaseSchema):
     username = ma.fields.String(required=True, allow_none=False)
+
+class TopologyViewSchema(MaBaseSchema):
+    nodes = ma.fields.String(required=True, allow_none=False, dump_only=True)
+    relationships = ma.fields.String(required=True, allow_none=False, dump_only=True)
