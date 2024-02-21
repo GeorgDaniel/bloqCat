@@ -1,6 +1,6 @@
 # BloQCat
 
-This service is used for aggregating concrete pattern solutions.
+This service is used for aggregating Quantumcomputing Pattern concrete solutions.
 
 ---
 

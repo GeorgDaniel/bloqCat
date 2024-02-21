@@ -2,7 +2,7 @@
 name = "bloqcat"
 version = "0.4.1"
 description = "A REST API for aggregation of qc-pattern concrete solutions"
-authors = ["Daniel George"]
+authors = ["Daniel Georg"]
 license = "Unlicense"
 readme = "README.md"
 

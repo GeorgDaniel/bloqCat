@@ -11,10 +11,10 @@ Welcome to BloQCat documentation!
    :caption: Contents:
 
    readme
-   cli
    changelog
    use-case
    templatedocumentation
+   cli
 
 `Api documentation <api.html>`_
 
