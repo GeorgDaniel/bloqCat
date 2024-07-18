@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "flask_template"
+name = "bloqcat"
 version = "0.4.1"
-description = "A template for Flask applications with SQLalchemy, Migrations and REST API"
-authors = ["Fabian Bühler"]
+description = "A REST API for aggregation of qc-pattern concrete solutions"
+authors = ["Daniel Georg"]
 license = "Unlicense"
 readme = "README.md"
 

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Flask-Template's documentation!
+Welcome to BloQCat documentation!
 ==========================================
 
 .. toctree::
@@ -11,8 +11,10 @@ Welcome to Flask-Template's documentation!
    :caption: Contents:
 
    readme
-   cli
    changelog
+   use-case
+   templatedocumentation
+   cli
 
 `Api documentation <api.html>`_
 
