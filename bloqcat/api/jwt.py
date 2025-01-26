@@ -59,7 +59,6 @@ class JWTMixin:
             security_scheme = {security_scheme: []}
 
         def decorator(func: Callable[..., RT]) -> Callable[..., RT]:
-
             # map to names that are less likely to have collisions with user defined arguments!
             _jwt_optional = optional
             _jwt_fresh = fresh
