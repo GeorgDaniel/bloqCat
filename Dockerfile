@@ -5,7 +5,8 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the pyproject.toml and poetry.lock files to the container
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml poetry.lock README.md /app/
+COPY bloqcat /app/bloqcat
 
 ENV PATH="/root/.local/bin:${PATH}"
 
