@@ -32,7 +32,8 @@ ROOT_ENDPOINT = SmorestBlueprint(
 class RootView(MethodView):
     @ROOT_ENDPOINT.response(HTTPStatus.OK, VersionsRootSchema())
     def get(self) -> Dict[str, str]:
-        """Get the Root API information containing the links to all versions of this api."""
+        """Get the Root API information containing the links to all versions of this
+        api."""
         return {
             "title": ROOT_API.spec.title,
             "v1": url_for("api-v1.RootView", _external=True),

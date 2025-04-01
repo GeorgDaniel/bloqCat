@@ -44,7 +44,7 @@ RT = TypeVar("RT")
 
 
 class JWTMixin:
-    """Extend Blueprint to add security documentation and jwt handling"""
+    """Extend Blueprint to add security documentation and jwt handling."""
 
     def require_jwt(
         self,
@@ -54,7 +54,8 @@ class JWTMixin:
         optional: bool = False,
         refresh_token: bool = False,
     ) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
-        """Decorator validating jwt tokens and documenting them for openapi specification (only version 3...)."""
+        """Decorator validating jwt tokens and documenting them for openapi specification
+        (only version 3...)."""
         if isinstance(security_scheme, str):
             security_scheme = {security_scheme: []}
 

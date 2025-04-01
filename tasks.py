@@ -214,7 +214,8 @@ def update_licenses(c, include_installed=False):
 
 @task(update_licenses)
 def update_dependencies(c):
-    """Update dependencies that are derived from the pyproject.toml dependencies (e.g. doc dependencies and licenses).
+    """Update dependencies that are derived from the pyproject.toml dependencies (e.g. doc
+    dependencies and licenses).
 
     Args:
         c (Context): task context

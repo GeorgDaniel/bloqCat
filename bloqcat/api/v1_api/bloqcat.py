@@ -1,20 +1,14 @@
 """Module containing the BloQCat Framework endpoint(s) of the v1 API."""
 
-from flask import jsonify, request
-from typing import Dict
-from flask.helpers import url_for
+from flask import request
 from flask.views import MethodView
-from dataclasses import dataclass
 from http import HTTPStatus
 from flask import Response
 
 from .root import API_V1
-from .models import TopologyViewSchema
-from ..jwt import DemoUser
 
 import xml.etree.ElementTree as ET
 import requests
-import re
 
 
 @API_V1.route("/bloqcat/winery/topology/deploy/json", methods=["POST"])

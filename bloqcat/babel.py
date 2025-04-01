@@ -27,8 +27,8 @@ BABEL = Babel(locale_selector=_get_locale)
 def inject_lang_from_header():
     """Inject the language defined in the custom 'lang' Hader into the g context.
 
-    This method can be used in a before request callback to read the custom
-    header and use that to set the language for example for API requests.
+    This method can be used in a before request callback to read the custom header and use
+    that to set the language for example for API requests.
     """
     lang: Optional[str] = request.headers.get("lang")
     if lang:
