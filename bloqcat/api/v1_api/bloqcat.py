@@ -234,7 +234,7 @@ class TopologyView(MethodView):
             .get("hasHeader")
         )
 
-        file_content = f"// -- Start HEADER --\n"
+        file_content = "// -- Start HEADER --\n"
 
         if has_header == "true":
             file_content += (
@@ -244,14 +244,14 @@ class TopologyView(MethodView):
         else:
             file_content += "// -- No header defined --\n"
 
-        file_content += f"\n// -- End HEADER --\n\n"
+        file_content += "\n// -- End HEADER --\n\n"
 
         file_content += f"// -- Detected QREG size == {reg_size} --\n"
         file_content += f"// -- Detected CREG size == {reg_size} --\n"
         file_content += f"qreg q[{reg_size}];\n"
         file_content += f"creg meas[{reg_size}];\n"
 
-        file_content += f"\n"
+        file_content += "\n"
         for node in solution_nodes.values():
             node_name = node["name"].replace("Concrete Solution of ", "")
             file_content += f'// -- Start CS from Pattern "{node_name}" --\n'
