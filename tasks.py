@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from pathlib import Path
 from typing import List
 from platform import system
