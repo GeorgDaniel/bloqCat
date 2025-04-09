@@ -8,4 +8,3 @@ __all__ = ["TopologySchema"]
 
 class TopologySchema(MaBaseSchema):
     topology_xml = ma.fields.String(required=True, allow_none=False, dump_only=True)
-

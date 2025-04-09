@@ -133,4 +133,3 @@ def create_app(test_config: Optional[Dict[str, Any]] = None):
 @click.group(cls=FlaskGroup, create_app=create_app)
 def cli():
     """Cli entry point for autodoc tooling."""
-    pass

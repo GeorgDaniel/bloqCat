@@ -62,8 +62,8 @@ class LoginView(MethodView):
     def post(self, credentials: Dict[str, str]):
         """Login with the user credentials to receive a access and refresh token pair.
 
-        The access token can be used for all authorized api endpoints.
-        The refresh token can only be used with the refresh endpoint to get a new access token.
+        The access token can be used for all authorized api endpoints. The refresh token
+        can only be used with the refresh endpoint to get a new access token.
         """
         identity = DemoUser(credentials.get("username", "guest"))
         return LoginTokensData(

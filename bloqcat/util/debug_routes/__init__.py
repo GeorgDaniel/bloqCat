@@ -1,5 +1,4 @@
-"""
-Module containing Debug Methods and sites.
+"""Module containing Debug Methods and sites.
 
 This Module should only be loaded in debug Mode.
 """
