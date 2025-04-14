@@ -16,6 +16,8 @@ API_V1 = SmorestBlueprint(
 @dataclass()
 class RootData:
     auth: str
+    swagger_ui: str
+    rapidoc: str
 
 
 @API_V1.route("/")
@@ -25,4 +27,8 @@ class RootView(MethodView):
     @API_V1.response(HTTPStatus.OK, RootSchema())
     def get(self):
         """Get the urls of the next endpoints of the v1 api to call."""
-        return RootData(auth=url_for("api-v1.AuthRootView", _external=True))
+        return RootData(
+            auth=url_for("api-v1.AuthRootView", _external=True),
+            swagger_ui="/api/swagger-ui",
+            rapidoc="/api/rapidoc"
+        )
