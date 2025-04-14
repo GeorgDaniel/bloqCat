@@ -22,7 +22,7 @@ class TopologyView(MethodView):
         except ET.ParseError as e:
             return f"Invalid JSON data: {str(e)}", HTTPStatus.BAD_REQUEST
 
-        # Validierung der Daten
+        # Validation of the data
         valid, message = self.validate_data(data)
         if not valid:
             return message, HTTPStatus.BAD_REQUEST
@@ -42,17 +42,17 @@ class TopologyView(MethodView):
         concrete_solution_files = self.fetch_files(solution_nodes)
 
         if not concrete_solution_files:
-            return "Fehler beim Abrufen der Dateien.", HTTPStatus.BAD_REQUEST
+            return "Error retrieving files.", HTTPStatus.BAD_REQUEST
 
-        # Aggregieren der Dateien
+        # Aggregating the files
         file_content = self.aggregate_concrete_solution_files(
             concrete_solution_files, solution_nodes, solution_relationships
         )
 
-        # Erstellen des Dateiinhalts (nach erfolgreicher Validierung)
+        # Create the file content (after successful validation)
         # file_content = self.create_file_content(data)
 
-        # Erstellen einer Response mit dem Dateiinhalt
+        # Create a response with the file content
         response = Response(
             file_content,
             mimetype="text/plain",
@@ -86,52 +86,52 @@ class TopologyView(MethodView):
             file_content = self.fetch_file_content(node_id)
             if file_content:
                 files_content.append(file_content)
-                # Hier drucken wir den Inhalt jeder Datei aus
-                print(f"Inhalt der Datei für Node ID {node_id}:")
+                # Here we print the contents of each file
+                print(f"Contents of the file for Node ID {node_id}:")
                 print(file_content)
             else:
-                print(f"Fehler beim Abrufen der Datei für Node ID {node_id}")
+                print(f"Error retrieving file for Node ID {node_id}")
         return files_content
 
     def validate_data(self, data):
-        # Überprüfen, ob 'nodeTemplates' und 'relationshipTemplates' vorhanden sind
+        # Check if 'nodeTemplates' and 'relationshipTemplates' exist
         if "nodeTemplates" not in data or "relationshipTemplates" not in data:
             return (
                 False,
-                "Daten müssen 'nodeTemplates' und 'relationshipTemplates' enthalten.",
+                "Data must contain 'nodeTemplates' and 'relationshipTemplates'.",
             )
 
-        # Überprüfen, ob 'nodeTemplates' und 'relationshipTemplates' leer sind
+        # Check if 'nodeTemplates' and 'relationshipTemplates' are empty
         if not data["nodeTemplates"] and not data["relationshipTemplates"]:
-            return False, "Die Topologie ist leer."
+            return False, "The topology is empty."
 
-        # Überprüfen, ob 'nodeTemplates' mindestens zwei Elemente hat
+        # Check if 'nodeTemplates' has at least two elements
         if len(data.get("nodeTemplates", [])) < 2:
-            return False, "'nodeTemplates' muss mindestens zwei Elemente haben."
+            return False, "'nodeTemplates' must have at least two elements."
 
-        # Überprüfen, ob 'relationshipTemplates' mindestens ein Element hat
+        # Check if 'relationshipTemplates' has at least one element
         if len(data.get("relationshipTemplates", [])) < 1:
-            return False, "'relationshipTemplates' muss mindestens ein Element haben."
+            return False, "'relationshipTemplates' must have at least one element."
 
-        # Überprüfen, ob es Knoten mit dem Präfix "Concrete Solution Of" gibt
+        # Check if there are nodes with the prefix "Concrete Solution Of"
         if not any(
             node.get("name", "").startswith("Concrete Solution of")
             for node in data.get("nodeTemplates", [])
         ):
-            return False, "Bitte generieren Sie eine Solution Language!"
+            return False, "Please generate a Solution Language!"
 
-        # Wenn alle Validierungen erfolgreich sind
-        return True, "Daten sind gültig."
+        # If all validations are successful
+        return True, "Data is valid."
 
     def validate_path(self, nodes, relationships):
-        # Zuerst filtern wir die Nodes, die mit "Concrete Solution of" beginnen
+        # First, we filter the nodes that begin with "Concrete Solution of"
         concrete_solution_nodes = {
             node["id"]: node
             for node in nodes
             if node.get("name", "").startswith("Concrete Solution of")
         }
 
-        # Dann filtern wir die Relationships, die nur zwischen diesen Nodes existieren und deren Name "Aggregation" ist
+        # Then we filter the relationships that exist only between these nodes and whose name is "Aggregation" ist
         valid_relationships = [
             r
             for r in relationships
@@ -140,12 +140,12 @@ class TopologyView(MethodView):
             and r["targetElement"]["ref"] in concrete_solution_nodes
         ]
 
-        # Überprüfen der Qubit-Anzahl für jede valide Beziehung
+        # Checking the number of qubits for each valid relationship
         for relationship in valid_relationships:
             source_node = concrete_solution_nodes[relationship["sourceElement"]["ref"]]
             target_node = concrete_solution_nodes[relationship["targetElement"]["ref"]]
 
-            # Zugriff auf die Qubit-Anzahl
+            # Access to the number of qubits
             source_qubits = (
                 source_node["properties"].get("kvproperties", {}).get("QubitCount")
             )
@@ -153,15 +153,15 @@ class TopologyView(MethodView):
                 target_node["properties"].get("kvproperties", {}).get("QubitCount")
             )
 
-            # Überprüfen, ob die Qubit-Anzahlen gleich sind
+            # Check if the qubit numbers are equal
             if source_qubits != target_qubits:
                 return (
                     False,
-                    "Nicht übereinstimmende Qubit-Anzahlen in einer Aggregations-Beziehung.",
+                    "Non-matching qubit counts in an aggregation relationship.",
                 )
 
-        # Wenn alle Validierungen erfolgreich sind
-        return True, "Pfade und Qubit-Anzahlen sind gültig."
+        # If all validations are successful
+        return True, "Paths and qubit counts are valid."
 
     def fetch_file_content(self, concrete_solution_id):
         url = f"http://qc-atlas-api:6626/atlas/patterns/patternId/concrete-solutions/{concrete_solution_id}/file/content"
@@ -172,19 +172,19 @@ class TopologyView(MethodView):
             return None
 
     def create_solution_path(self, nodes, relationships):
-        # Filtern der Knoten, die mit "Concrete Solution of" beginnen
+        # Filter the nodes that begin with "Concrete Solution of"
         solution_nodes = {
             node["id"]: node
             for node in nodes
             if node.get("name", "").startswith("Concrete Solution of")
         }
 
-        # Filtern der Relationships vom Typ 'Aggregation'
+        # Filtering relationships of type 'Aggregation'
         aggregation_relationships = [
             r for r in relationships if r.get("name") == "Aggregation"
         ]
 
-        # Überprüfen, ob eine Aggregationsbeziehung zwischen den relevanten Knoten besteht
+        # Check whether an aggregation relationship exists between the relevant nodes
         valid_solution_nodes = {}
         for relation in aggregation_relationships:
             source_id = relation["sourceElement"]["ref"]
@@ -193,10 +193,10 @@ class TopologyView(MethodView):
                 valid_solution_nodes[source_id] = solution_nodes[source_id]
                 valid_solution_nodes[target_id] = solution_nodes[target_id]
 
-        # Löschen Sie nicht verbundene Knoten
+        # Delete unconnected nodes
         solution_nodes = valid_solution_nodes
 
-        # Filtern der Relationships, die nur zwischen den gültigen Nodes existieren
+        # Filtering the relationships that only exist between the valid nodes
         solution_relationships = [
             r
             for r in relationships
@@ -204,7 +204,7 @@ class TopologyView(MethodView):
             and r["targetElement"]["ref"] in solution_nodes
         ]
 
-        # Ausgabe der Lösungsknoten und -beziehungen für Debugging-Zwecke
+        # Output of solution nodes and relationships for debugging purposes
         print("Solution Nodes:")
         for node_id, node in solution_nodes.items():
             print(f"Node ID: {node_id}, Node Data: {node}")
@@ -218,7 +218,7 @@ class TopologyView(MethodView):
     def aggregate_concrete_solution_files(
         self, concrete_solution_files, solution_nodes, solution_relationships
     ):
-        # Hier wird der Inhalt der Datei basierend auf den Daten erstellt
+        # Here the contents of the file are created based on the data
         start_pattern_name = solution_nodes[list(solution_nodes.keys())[0]][
             "name"
         ].replace("Concrete Solution of ", "")
